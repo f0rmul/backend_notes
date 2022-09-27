@@ -1,0 +1,73 @@
+The Hypertext Transfer Protocol (HTTP) is an application layer protocol in the Internet protocol suite model for distributed,
+collaborative, hypermedia information systems.HTTP is the foundation of data communication for the World Wide Web,
+where hypertext documents include hyperlinks to other resources that the user can easily access,
+for example by a mouse click or by tapping the screen in a web browser.
+
+
+HTTP Anatomy:
+	HTTP Request:
+		-URL (Unified Resource Locator)
+		-Method Type
+		-Headers
+		-Body
+	HTTP Response:
+		-Status Code
+		-Headers
+		-Body
+
+
+HTTP 1.0
+*New TCP connection with each request(open->make_request->get_response->close)
+*Slow
+*Buffering huge data (spliting into packets)
+
+HTTP 1.1
+*Persistent TCP Connection
+*Low latency
+*Streaming with chuncked transfer
+
+HTTP 2.0
+*Compression
+*Multiplexing(combine two or more request into 1 logical request)
+*SPDY
+*Secure by default
+*Push server (more than 1 response item on single request)
+
+HTTP 3.0
+*replace TCP with QUIC
+*All http 2.0 features
+
+INFO:
+
+HTTP требует открытые методы и хедеры для передачи смысла
+запроса. В нём содержится URL, URI или URN.
+
+Базовые понятия:
+прокси:
+	Промежуточная программа, являющаяся одновременно и
+	клиентом, и сервером. "Прозрачный" прокси не модифицирует
+	запрос или ответ. "Не прозрачный" прокси наоборот,
+	модифицирует (сокращение протокола, анонимные операции, ...).
+
+шлюз:
+	Сервер, являющийся посредником для другого сервера. В отличие
+	от прокси, шлюз передаёт в точности такой же запрос и клиент
+	может не знать, что общается со шлюзом, а не настоящим
+	сервером.
+
+тоннель:
+	Программа, действующая как слепое реле между двумя
+	соединениями. Туннель перестаёт существовать когда
+	оба конца соединения закрываются.
+
+Firewall | Brandmauer:
+	Элемент компьютерной сети, фильтрующий входящий траффик
+	в соответствии с заданными правилами.
+
+HTTP-запрос может передаваться через посредников, образуя
+цепь из соединений (При большой дальности сигнала, например).
+
+Любая часть цепного соединения может иметь кэш, что позволяет
+обрывать соединение раньше времени в целях экономии времени
+и ресурсов, если запрос был найден в кэшах промежуточного сервера.
+
