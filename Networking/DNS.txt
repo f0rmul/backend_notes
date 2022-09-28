@@ -1,0 +1,27 @@
+
+Domain Name System anatomy:
+- Resolve rserver
+- Root server
+- TLD (top level domain) server
+- Authoritative Name server
+
+You wanna go to the google.com! 
+1 Step:
+ Ask ip from the Resolve server. 
+ Resolver server (provider's server) looking ip in own cache
+ If ip is not found->
+2 Step:  
+  Ask ip from the Root server.
+  Root server looking ip in own cache
+  If ip is not found->
+3 Step:
+  Ask ip from the TLD server.
+  TLD server looking ip in own cache
+  If ip is not found->
+4 Step:
+   Ask ip from the ANS.
+   ANS looking ip in own cache
+   Ip must be found -> returning to your computer
+
+Your PC -> Root Server -> TLD server ->Auth. Name server -> Your PC
+	

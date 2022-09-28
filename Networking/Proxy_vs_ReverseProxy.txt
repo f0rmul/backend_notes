@@ -1,0 +1,27 @@
+
+-Proxy:
+	A proxy server is a system or router that provides a gateway between users and the internet.
+        Therefore, it helps prevent cyber attackers from entering a private network.
+        It is a server, referred to as an “intermediary” because it goes between end-users and the web pages they visit online.
+
+-Reverse Proxy:
+	A reverse proxy is a server that sits in front of web servers and forwards client (e.g. web browser)
+ 	requests to those web servers.
+	Reverse proxies are typically implemented to help increase security, performance, and reliability.
+
+Proxy advantages:
+* Caching
+*Anonymity
+*Logging
+*Block Sites
+*Microservices
+
+Reverse Proxy advantages:
+*Caching
+*Load Balancing
+*Ingress
+*Microservices
+
+Difference:
+Proxy- server doesnt know the client
+Reverse Proxy - client doesnt know the final destination
