@@ -1,0 +1,44 @@
+
+Works the same as HTTP protocol but with some additionsl features! See below!
+
+Beside the standart HTTP request and communication, HTTPS needs to make TLC/ssl handshake.
+
+The goal of this handshake: produce the same symmetric kóí fot both sides! (client + server)
+
+(Note: That key allows client/server to decrypt the recieved data.)
+
+The process of this handshake :
+ 
+ -TLS 1.2 ( !( .... )! ) == encrypted
+  client -> (client hello) -> server
+  client <- (server hello certificate) <- server
+				|
+				-> certificate contains the server public key to encrypt symmetric key
+  client -> !(Change cipher,fin + symmetric key)! -> server
+  client <- (changr cipher,fin) <- server
+  
+  client -> !( GET / ...)! -> server
+	.....
+ 
+Problems:
+ -attackers can steal server private key -> problems
+
+ -TLS 1.3 Diffie Hellman
+
+  Note 1: (3 key : blue - client PRIVATE key, red - server PRIVATE key, pink - PUBLIC key)
+	-> blue + red + pink = symmetric private key!
+  Note 2:
+	We can combine them into unbreakable public pairs and send over the wire:
+		-> blue + PINK == public/unbreakable 
+		-> red + PINK == public/unbreakable
+   
+ 1) client -> ( pink + pair(blue + pink)) -> server
+    |					     |
+    \-> Generates blue + pink 		     \-> Generates red
+ 
+ 2) server : has red and got pair(pink+ blue) ==> server has SYMMETRIC KEY!
+  
+ 3) client <- ( pair(pink + red) ) <- server
+ 4) client : has pink + blue and got red ==> client has SYMMETRIC KEY!
+ 5) We are done!!
+  
