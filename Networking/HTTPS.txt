@@ -3,9 +3,9 @@ Works the same as HTTP protocol but with some additionsl features! See below!
 
 Beside the standart HTTP request and communication, HTTPS needs to make TLC/ssl handshake.
 
-The goal of this handshake: produce the same symmetric kóí fot both sides! (client + server)
+The goal of this handshake: produce the same symmetric kÃ³Ã­ fot both sides! (client + server)
 
-(Note: That key allows client/server to decrypt the recieved data.)
+(Note: That key allows client/server to encrypt/decrypt the recieved data.)
 
 The process of this handshake :
  
