@@ -9,19 +9,42 @@ The goal of this handshake: produce the same symmetric kóí fot both sides! (clie
 
 The process of this handshake :
  
- -TLS 1.2 ( !( .... )! ) == encrypted
-  client -> (client hello) -> server
-  client <- (server hello certificate) <- server
-				|
-				-> certificate contains the server public key to encrypt symmetric key
-  client -> !(Change cipher,fin + symmetric key)! -> server
-  client <- (changr cipher,fin) <- server
-  
-  client -> !( GET / ...)! -> server
-	.....
- 
+ -TLS 1.2
+   * TCP Handshake *
+	...
+   * TLS Handshake *
+   //Certificate check begin //
+client -> (Client Hello) -> server
+	         |
+		 \-> set of encryption algorithms, TLS version
+
+client <- (Server Hello) <- server
+client <- (Certificate with PUBLIC key inside) <- server (Generates cert + private key)
+client <- (Server Hello done) <- server
+  //Certificate check end //
+
+ //Key exchange begin //
+
+client    Key exchange msg 
+       -> Change cipher cpec -> server
+ 	  Finished
+
+client    Change cipher spec
+       <- Finished	     <- server
+client: (Generates SESSION KEY(encryption data key) nad encrypt it by servers's PUBLIC KEY)
+
+client -> (Encrypted SESSION KEY) -> server (had SESSION KEY)
+server: Decrypt Encrypted SESSION KEY by own PRIVATE KEY)
+ //Key exchange end//
+
+ // Data transmission //
+
+client-> (Encrypted data by SESSION KEY) -> server
+
 Problems:
  -attackers can steal server private key -> problems
+
+
 
  -TLS 1.3 Diffie Hellman
 
